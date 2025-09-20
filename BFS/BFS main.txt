@@ -1,0 +1,48 @@
+import java.util.*;
+
+class BFS 
+{
+    public static void bfs(int start, List<List<Integer>> graph, int n) 
+    {
+        boolean[] visited = new boolean[n];  // track visited nodes
+        Queue<Integer> q = new LinkedList<>();
+
+        // Step 1: start with the source node
+        q.add(start);
+        visited[start] = true;
+
+        // Step 2: process the queue
+        while (!q.isEmpty()) 
+	{
+            int node = q.poll();  // get front element
+            System.out.print(node + " "); // process node (e.g., print)
+
+            // Step 3: explore neighbors
+            for (int neighbor : graph.get(node)) 
+	    {
+                if (!visited[neighbor]) 
+		{
+                    visited[neighbor] = true; // mark visited
+                    q.add(neighbor);          // push neighbor
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) 
+    {
+        int n = 6; // number of vertices
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
+
+        // Example graph edges
+        graph.get(0).add(1);
+        graph.get(0).add(2);
+        graph.get(1).add(3);
+        graph.get(1).add(4);
+        graph.get(2).add(5);
+
+        System.out.println("BFS starting from node 0:");
+        bfs(0, graph, n);
+    }
+}
