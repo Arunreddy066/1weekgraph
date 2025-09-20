@@ -1,3 +1,2 @@
 # 1weekgraph
-Do collect whatever that makes you pro in graphs hmmm...
-Start with how algorithm works and then try out examples and code it if possible..
+Plan Accordingly
