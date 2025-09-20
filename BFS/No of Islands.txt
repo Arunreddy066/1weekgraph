@@ -1,0 +1,31 @@
+public int numIslandsBFS(char[][] grid) {
+    int m = grid.length, n = grid[0].length;
+    boolean[][] visited = new boolean[m][n];
+    int count = 0;
+    int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (grid[i][j] == '1' && !visited[i][j]) {
+                count++;
+                Queue<int[]> q = new LinkedList<>();
+                q.offer(new int[]{i, j});
+                visited[i][j] = true;
+
+                while (!q.isEmpty()) {
+                    int[] cell = q.poll();
+                    for (int[] d : dirs) {
+                        int x = cell[0] + d[0];
+                        int y = cell[1] + d[1];
+                        if (x >= 0 && y >= 0 && x < m && y < n &&
+                            grid[x][y] == '1' && !visited[x][y]) {
+                            visited[x][y] = true;
+                            q.offer(new int[]{x, y});
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return count;
+}
